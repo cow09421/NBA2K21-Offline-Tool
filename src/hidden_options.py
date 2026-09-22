@@ -14,6 +14,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools/vendor'))
+sys.path.insert(0, str(ROOT / 'src'))
 from memory_read import Reader, K, W
 from mycareer_unlock import (MCBinary, PROC_ACCESS, PAGE_EXECUTE_READWRITE,
                              _open, _read_live, _write_live, _set_prot, _flush,
