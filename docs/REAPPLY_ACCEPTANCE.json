@@ -1,0 +1,17 @@
+{
+  "steps": [
+    {
+      "action": "park-meta-curry",
+      "exit": 0,
+      "stdout": "GUI_STARTED root=E:\\SteamLibrary\\NBA2K21\\.egstore\\V2F.L.SEngine\\V2F.L.SEngine\\OfflineTool\nBUTTON park-meta-apply 套用 2K21 PARK META\nBUTTON park-meta-curry Curry 動作包\nBUTTON park-meta-lebron LeBron 動作包\nBUTTON park-meta-kd KD 動作包\nBUTTON park-meta-restore 恢復原動作\n{\"status\": \"RUNTIME_VERIFIED\", \"action\": \"apply:curry\", \"fields\": 8, \"non_target_bytes_unchanged\": true, \"journal\": \"E:\\\\SteamLibrary\\\\NBA2K21\\\\.egstore\\\\V2F.L.SEngine\\\\V2F.L.SEngine\\\\OfflineTool\\\\data\\\\park_sessions\\\\20260923_055339_35731d876eef402f8b402f24f0e83ffb\"}\n\n",
+      "stderr": "\n"
+    },
+    {
+      "action": "park-meta-restore",
+      "exit": 0,
+      "stdout": "GUI_STARTED root=E:\\SteamLibrary\\NBA2K21\\.egstore\\V2F.L.SEngine\\V2F.L.SEngine\\OfflineTool\nBUTTON park-meta-apply 套用 2K21 PARK META\nBUTTON park-meta-curry Curry 動作包\nBUTTON park-meta-lebron LeBron 動作包\nBUTTON park-meta-kd KD 動作包\nBUTTON park-meta-restore 恢復原動作\n{\"status\": \"RUNTIME_VERIFIED\", \"action\": \"restore\", \"fields\": 8, \"non_target_bytes_unchanged\": true, \"journal\": \"E:\\\\SteamLibrary\\\\NBA2K21\\\\.egstore\\\\V2F.L.SEngine\\\\V2F.L.SEngine\\\\OfflineTool\\\\data\\\\park_sessions\\\\20260923_055340_70672b8f59554958977b6b4a02a76c26\"}\n\n",
+      "stderr": "\n"
+    }
+  ],
+  "baseline_hash_unchanged": true
+}

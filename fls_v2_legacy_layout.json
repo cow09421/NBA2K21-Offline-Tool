@@ -1,0 +1,102 @@
+{
+  "source_binary": {
+    "filename": "V2F.L.SEngine.exe",
+    "sha256": "02b80d3814d2044a79eee7b095a0758f21eaef254ea717ba3b376f8d108f8a77",
+    "md5": "c661b6ee0f69dc4a5a86b742f9ce6037",
+    "architecture": "PE32+ x86-64 .NET/Mono WPF",
+    "embedded_pdb_path": "E:\\2K21\\MetUI Demo\\obj\\x64\\发布\\MetUI Demo.pdb",
+    "process_name": "NBA2K21",
+    "module_name": "nba2k21.exe"
+  },
+  "warning": "These are legacy hard-coded module-relative offsets from the uploaded FLS binary. Do not write them into a different NBA2K21.exe build without validating its SHA/version/signature. Prefer AOB/signature discovery and runtime validation.",
+  "memory_model": {
+    "team_player_table_pointer_rva": "0x5CD2F60",
+    "team_stride": "0x1058",
+    "team_name_offset": "0x2B4",
+    "player_slots_per_team": 17,
+    "player_pointer_stride": 8,
+    "player_struct": {
+      "name_2_offset": "0x00",
+      "name_1_offset": "0x28",
+      "face_id_offset": "0x6C",
+      "attributes_offset": "0x41B",
+      "badges_offset": "0x4B7"
+    }
+  },
+  "attributes": {
+    "count": 56,
+    "storage": "1 byte per attribute",
+    "read_formula": "display = floor(raw / 3) + 25",
+    "write_formula": "raw = (display - 25) * 3",
+    "raw_range": [0, 255],
+    "effective_display_range_from_codec": [25, 110],
+    "important": "raw 222 -> display 99; raw 255 -> display 110. The uploaded FLS '能力全满' UI fills 99, but the codec itself supports 110.",
+    "names_in_order": [
+      "切入上篮", "背身后仰跳投", "背身勾手", "背身动作", "造犯规", "近距离投篮", "中投", "三分", "罚球", "控球",
+      "传球智商", "传球准确性", "进攻篮板", "防守篮板", "内线防守", "外线防守", "横向敏捷", "传球洞察力", "盖帽", "抢断",
+      "防守稳定性", "协防智商", "原地扣篮", "切入扣篮", "速度", "运球速度", "加速能力", "弹跳力", "力量", "体力",
+      "争抢能力", "投篮智商", "进攻稳定性", "总评补偿", "潜力", "头部耐久", "颈部耐久", "背部耐久", "左肩耐久", "右肩耐久",
+      "左走耐久", "右走耐久", "左怀关节耐久", "右怀关节耐久", "左膝耐久", "右膝耐久", "左果耐久", "右果耐久", "左脚耐久", "右脚耐久",
+      "总合耐久", "未知", "传球视野", "挡拆防守智商", "接球能力", "干扰投篮"
+    ]
+  },
+  "badges": {
+    "block_size_bytes": 37,
+    "max_template_hex": "92 91 91 91 91 90 92 90 93 49 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 24 04 24 E4",
+    "max_template_decimal": [146,145,145,145,145,144,146,144,147,73,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,4,36,228],
+    "note": "The uploaded FLS writes this entire 37-byte block for '徽章全满'. Preserve as a legacy template until individual badge encoding is mapped. 37 bytes is consistent with a packed representation for the 2K21 badge set, but exact bit/nibble semantics must be verified before exposing per-badge editing."
+  },
+  "runtime_features": {
+    "takeover": {
+      "pointer_rva": "0x4D50610",
+      "pointer_offset": "0xC94",
+      "write": "float 200.0 repeatedly"
+    },
+    "stamina_disable": {
+      "rva": "0x5BFA42C",
+      "enabled_write_byte": 0,
+      "disabled_restore_byte": 1
+    },
+    "mc_grade_A_plus": {
+      "pointer_rva": "0x359B9F8",
+      "pointer_offset_1": "0x3D8",
+      "pointer_offset_2": "0x40",
+      "write": "float 99.0 repeatedly"
+    },
+    "fans": {
+      "pointer_rva": "0x5CAA590",
+      "pointer_offset": "0x13FC8",
+      "note": "Fields exist in legacy binary; behavior not fully mapped in this research pass."
+    }
+  },
+  "builder": {
+    "build_points_rva": "0x4B613EC",
+    "build_points_lock_value": 100,
+    "weight_rva": "0x4A5C850",
+    "height_offset_from_weight_rva": "0x490",
+    "wingspan_offset_from_weight_rva": "0x492",
+    "takeover_offset_from_weight_rva": "0xD81",
+    "takeover_encoding": "selected_index * 32, except index 7 -> 255"
+  },
+  "legacy_code_patches": {
+    "unlock_hidden_options": [
+      {"rva":"0x7C7625","bytes":"EB"},
+      {"rva":"0x7DEF1B","bytes":"C7 85 60 0C 00 00 FF FF"},
+      {"rva":"0x7DEF23","bytes":"FF FF BA FF FF FF FF 41"},
+      {"rva":"0x4DD548","bytes":"90 90 90 90 90 90 44 39"},
+      {"rva":"0x4DFA35","bytes":"90 E9"}
+    ],
+    "custom_roster_enable": [
+      {"rva":"0xF89C18","bytes":"90 90 33 C0 EB 2A 48 8B"},
+      {"rva":"0x11F62FC","bytes":"90 90 90 90 90 90 E8 19"}
+    ],
+    "custom_roster_disable": [
+      {"rva":"0xF89C18","bytes":"74 04 33 C0 EB 2A 48 8B"},
+      {"rva":"0x11F62FC","bytes":"0F 84 24 01 00 00 E8 C9"}
+    ]
+  },
+  "embedded_links": {
+    "tutorial_video": "https://www.bilibili.com/video/BV1yy4y1v7pG",
+    "taobao_purchase": "https://item.taobao.com/item.htm?id=627153131498"
+  }
+}

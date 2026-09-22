@@ -1,0 +1,7 @@
+{
+  "source_files_checked": 33,
+  "old_tree_absolute_path_hits": [],
+  "syntax_errors": [],
+  "python": "OfflineTool/runtime/python/python.exe; dispatch uses -I -B",
+  "game_dependency": "E:/SteamLibrary/NBA2K21/NBA2K21.exe remains explicit build guard, not research-tree dependency"
+}

@@ -1,0 +1,129 @@
+﻿{
+  "steps": [
+    {
+      "action": "park-meta-curry",
+      "exit_code": 0,
+      "jumpshot": [
+        94,
+        81,
+        1
+      ],
+      "non_animation_unchanged": true,
+      "changed_offsets": [
+        "0x18d",
+        "0x18e",
+        "0x18f",
+        "0x226",
+        "0x290",
+        "0x304",
+        "0x350",
+        "0x356"
+      ]
+    },
+    {
+      "action": "park-meta-lebron",
+      "exit_code": 0,
+      "jumpshot": [
+        128,
+        115,
+        1
+      ],
+      "non_animation_unchanged": true,
+      "changed_offsets": [
+        "0x18d",
+        "0x18e",
+        "0x18f",
+        "0x226",
+        "0x290",
+        "0x304",
+        "0x31a",
+        "0x348",
+        "0x350",
+        "0x356"
+      ]
+    },
+    {
+      "action": "park-meta-kd",
+      "exit_code": 0,
+      "jumpshot": [
+        102,
+        89,
+        1
+      ],
+      "non_animation_unchanged": true,
+      "changed_offsets": [
+        "0x18d",
+        "0x18e",
+        "0x18f",
+        "0x226",
+        "0x290",
+        "0x304",
+        "0x31a",
+        "0x350",
+        "0x356"
+      ]
+    },
+    {
+      "action": "park-meta-apply",
+      "exit_code": 0,
+      "jumpshot": [
+        94,
+        81,
+        1
+      ],
+      "non_animation_unchanged": true,
+      "changed_offsets": [
+        "0x18d",
+        "0x18e",
+        "0x18f",
+        "0x226",
+        "0x290",
+        "0x304",
+        "0x31a",
+        "0x350",
+        "0x356"
+      ]
+    },
+    {
+      "action": "park-meta-restore",
+      "exit_code": 0,
+      "jumpshot": [
+        178,
+        94,
+        0
+      ],
+      "non_animation_unchanged": true,
+      "changed_offsets": []
+    }
+  ],
+  "limitations": [
+    "q q/Lakers is the configured MC identity, not a decoded career save ID",
+    "invariance covers known 0x4E8 player structure and roster membership; external pointed-to data not claimed"
+  ],
+  "process": {
+    "pid": <PID>,
+    "exe": "E:\\SteamLibrary\\NBA2K21\\NBA2K21.exe",
+    "creation": "2026-09-22 15:09:17",
+    "windows": [
+      "NBA 2K21"
+    ],
+    "foreground_match": false
+  },
+  "player_identity": {
+    "name": "q q",
+    "face_id": 1,
+    "membership": [
+      {
+        "team_index": 13,
+        "slot": 14,
+        "team_name": "Lakers"
+      }
+    ],
+    "name_bytes": "710000006c006c0000000000000000000000000000000000000000000000000000000000000000007100000061006e000000000000000000000000000000000000000000000000000000000000000000",
+    "unique_id_bytes": "1702802a",
+    "game_sha256": "5dbd9408dff48f3d36f34748ae505aacb73a9935e9a9eafb7f345cb9c6325556"
+  },
+  "status": "RUNTIME VERIFIED",
+  "original_full_0x4e8_match": true,
+  "final_restore": "PASS"
+}

@@ -1,0 +1,76 @@
+Compiling: E:\SteamLibrary\NBA2K21\.egstore\V2F.L.SEngine\V2F.L.SEngine\OfflineTool\src\gui\NBA2K21 Player Tool.exe
+src\gui\MainForm.cs(1254,13): warning CS4014: ¦]¬°¥¼µ¥­Ô¦¹©I¥s¡A©Ò¥H¦b©I¥s§¹¦¨¤§«e·|Ä~Äò°õ¦æ¥Ø«e¤èªk¡C½Ğ¦Ò¼{±N 'await' ¹Bºâ¤l®M¥Î¦Ü©I¥sªºµ²ªG¡C
+Done. Output: E:\SteamLibrary\NBA2K21\.egstore\V2F.L.SEngine\V2F.L.SEngine\OfflineTool\src\gui\NBA2K21 Player Tool.exe
+Release copy: E:\SteamLibrary\NBA2K21\.egstore\V2F.L.SEngine\V2F.L.SEngine\OfflineTool\NBA2K21 Offline Tool.exe
+{"status": "RUNTIME_VERIFIED", "action": "fixture", "fields": 1, "non_target_bytes_unchanged": true, "journal": "E:\\SteamLibrary\\NBA2K21\\.egstore\\V2F.L.SEngine\\V2F.L.SEngine\\OfflineTool\\build\\tmphnjl9o2a\\20260923_060028_692e032941104deda06b54ccb3294779"}
+{"status": "RUNTIME_VERIFIED", "action": "fixture", "fields": 1, "non_target_bytes_unchanged": true, "journal": "E:\\SteamLibrary\\NBA2K21\\.egstore\\V2F.L.SEngine\\V2F.L.SEngine\\OfflineTool\\build\\tmphnjl9o2a\\20260923_060028_0feee3838e67415e8c71a437c0057125"}
+{"status": "RUNTIME_VERIFIED", "action": "fixture", "fields": 1, "non_target_bytes_unchanged": true, "journal": "E:\\SteamLibrary\\NBA2K21\\.egstore\\V2F.L.SEngine\\V2F.L.SEngine\\OfflineTool\\build\\tmphnjl9o2a\\20260923_060028_23fe3edbca76499286d7a403ecae478e"}
+{"status": "RUNTIME_VERIFIED", "action": "restore", "fields": 8, "non_target_bytes_unchanged": true, "journal": "E:\\SteamLibrary\\NBA2K21\\.egstore\\V2F.L.SEngine\\V2F.L.SEngine\\OfflineTool\\build\\tmphnjl9o2a\\20260923_060028_6c97f250ee8c42d3878d25299947dc83"}
+GUI_STARTED root=E:\SteamLibrary\NBA2K21\.egstore\V2F.L.SEngine\V2F.L.SEngine\OfflineTool
+BUTTON park-meta-apply å¥—ç”¨ 2K21 PARK META
+BUTTON park-meta-curry Curry å‹•ä½œåŒ…
+BUTTON park-meta-lebron LeBron å‹•ä½œåŒ…
+BUTTON park-meta-kd KD å‹•ä½œåŒ…
+BUTTON park-meta-restore æ¢å¾©åŸå‹•ä½œ
+
+STDERR
+test_aob_wildcard_and_duplicate_detection (test_locator.LocatorTests.test_aob_wildcard_and_duplicate_detection) ... ok
+test_changed_selection (test_locator.LocatorTests.test_changed_selection) ... ok
+test_corrupt_count (test_locator.LocatorTests.test_corrupt_count) ... ok
+test_non_member (test_locator.LocatorTests.test_non_member) ... ok
+test_patched_code (test_locator.LocatorTests.test_patched_code) ... ok
+test_sources_disagree (test_locator.LocatorTests.test_sources_disagree) ... ok
+test_stable_selected_member (test_locator.LocatorTests.test_stable_selected_member) ... ok
+test_abi_and_alignment (test_mc_audit.Audit.test_abi_and_alignment) ... ok
+test_capture_post_write_aslr_and_instruction (test_mc_audit.Audit.test_capture_post_write_aslr_and_instruction) ... ok
+test_cleanup_and_exactly_once_continue (test_mc_audit.Audit.test_cleanup_and_exactly_once_continue) ... ok
+test_execute_capture_error_still_disarms_before_resume (test_mc_audit.Audit.test_execute_capture_error_still_disarms_before_resume) ... ok
+test_execute_condition_capture (test_mc_audit.Audit.test_execute_condition_capture) ... ok
+test_execute_encoding_and_ownership (test_mc_audit.Audit.test_execute_encoding_and_ownership) ... ok
+test_execute_one_shot_disarms_before_resume (test_mc_audit.Audit.test_execute_one_shot_disarms_before_resume) ... ok
+test_existing_and_new_threads (test_mc_audit.Audit.test_existing_and_new_threads) ... ok
+test_existing_debugger_state_refused (test_mc_audit.Audit.test_existing_debugger_state_refused) ... ok
+test_exit_event_does_not_detach_dead_process (test_mc_audit.Audit.test_exit_event_does_not_detach_dead_process) ... ok
+test_failed_install_tracked_for_cleanup (test_mc_audit.Audit.test_failed_install_tracked_for_cleanup) ... ok
+test_file_handles_closed_once (test_mc_audit.Audit.test_file_handles_closed_once) ... ok
+test_four_byte_write_encoding (test_mc_audit.Audit.test_four_byte_write_encoding) ... ok
+test_injected_break_drained_before_detach (test_mc_audit.Audit.test_injected_break_drained_before_detach) ... ok
+test_no_arbitrary_runtime_writer (test_mc_audit.Audit.test_no_arbitrary_runtime_writer) ... ok
+test_output_paths (test_mc_audit.Audit.test_output_paths) ... ok
+test_owned_vs_mixed_single_step (test_mc_audit.Audit.test_owned_vs_mixed_single_step) ... ok
+test_readback_failure_not_ready (test_mc_audit.Audit.test_readback_failure_not_ready) ... ok
+test_ready_requires_all_threads (test_mc_audit.Audit.test_ready_requires_all_threads) ... ok
+test_unrelated_exceptions_passed (test_mc_audit.Audit.test_unrelated_exceptions_passed) ... ok
+test_zero_threads_never_ready (test_mc_audit.Audit.test_zero_threads_never_ready) ... ok
+test_full_transaction_rollback_after_partial (test_park_meta.ParkTests.test_full_transaction_rollback_after_partial) ... ok
+test_non_target_invariance (test_park_meta.ParkTests.test_non_target_invariance) ... ok
+test_original_immutable_across_presets (test_park_meta.ParkTests.test_original_immutable_across_presets) ... ok
+test_profile_exact_bounded_fields (test_park_meta.ParkTests.test_profile_exact_bounded_fields) ... ok
+test_reject_outside_whitelist (test_park_meta.ParkTests.test_reject_outside_whitelist) ... ok
+test_wrong_player_baseline_rejected (test_park_meta.ParkTests.test_wrong_player_baseline_rejected) ... ok
+test_badges_change_rejected (test_phase2a.Phase2ATests.test_badges_change_rejected) ... ok
+test_clamp_rejected (test_phase2a.Phase2ATests.test_clamp_rejected) ... ok
+test_historical_max_sample_rejected (test_phase2a.Phase2ATests.test_historical_max_sample_rejected) ... ok
+test_identity_field_change_rejected (test_phase2a.Phase2ATests.test_identity_field_change_rejected) ... ok
+test_neighbor_ability_change_rejected (test_phase2a.Phase2ATests.test_neighbor_ability_change_rejected) ... ok
+test_restore_exact_clean_byte (test_phase2a.Phase2ATests.test_restore_exact_clean_byte) ... ok
+test_restore_rejects_unrelated_ability_change (test_phase2a.Phase2ATests.test_restore_rejects_unrelated_ability_change) ... ok
+test_single_byte_exact_diff (test_phase2a.Phase2ATests.test_single_byte_exact_diff) ... ok
+test_stale_baseline_rejected (test_phase2a.Phase2ATests.test_stale_baseline_rejected) ... ok
+test_all110_only_block (test_player_tool.BlockTests.test_all110_only_block) ... ok
+test_badge_stage_requires_all110 (test_player_tool.BlockTests.test_badge_stage_requires_all110) ... ok
+test_exact_restore_and_99_payloads (test_player_tool.BlockTests.test_exact_restore_and_99_payloads) ... ok
+test_max_badges_preserves_abilities (test_player_tool.BlockTests.test_max_badges_preserves_abilities) ... ok
+test_noop_detection_logic (test_player_tool.BlockTests.test_noop_detection_logic) ... ok
+test_noop_messages_cover_all_write_actions (test_player_tool.BlockTests.test_noop_messages_cover_all_write_actions) ... ok
+test_outside_change_rejected (test_player_tool.BlockTests.test_outside_change_rejected) ... ok
+test_phase2b_reject_missing_single110 (test_player_tool.BlockTests.test_phase2b_reject_missing_single110) ... ok
+test_phase2b_start_guard (test_player_tool.BlockTests.test_phase2b_start_guard) ... ok
+test_reject_changed_other_attribute (test_player_tool.BlockTests.test_reject_changed_other_attribute) ... ok
+test_restore_preserves_other_block (test_player_tool.BlockTests.test_restore_preserves_other_block) ... ok
+test_target_partial_write_rejected (test_player_tool.BlockTests.test_target_partial_write_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 55 tests in 0.121s
+
+OK

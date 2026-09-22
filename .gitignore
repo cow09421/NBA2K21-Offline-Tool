@@ -1,0 +1,36 @@
+# bundled Python runtime (rebuild per README)
+runtime/
+
+# build / temp / logs
+build/
+logs/
+dumps/
+__pycache__/
+*.pyc
+*.tmp
+*.log
+*.lock
+
+# transient test sessions / journals / readback artifacts
+data/park_sessions/
+
+# private NBA 2K21 saves — never commit
+MyCAREER*
+MyLEAGUE*
+MyTEAM*
+CreatedPlayers*
+UserData*
+RosterDescriptions*
+SaveDescriptions*
+Settings
+*.dmp
+
+# memory dumps / research snapshots (large)
+*.bin
+
+# IDE / OS
+.vs/
+obj/
+bin/
+Thumbs.db
+Desktop.ini

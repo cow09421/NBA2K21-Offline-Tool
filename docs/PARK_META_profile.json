@@ -1,0 +1,54 @@
+{
+ "name": "2K21 PARK META",
+ "version": 1,
+ "fields": {
+  "jump_shot": {
+   "offset": "0x18D",
+   "width": 3,
+   "value": [
+    94,
+    81,
+    1
+   ],
+   "confidence": "VERIFIED",
+   "source": "Curry roster ground truth; A-B-A probe + write + readback + restore + re-apply + MC re-entry persistence + gameplay verification",
+   "note": "encoding [id_a, id_b, flag]; 跳投48=[178,94,0], TIM DUNCAN=[100,87,1], Curry=[94,81,1]"
+  },
+  "field_0x304": {
+   "offset": "0x304",
+   "width": 1,
+   "value": 76,
+   "confidence": "EXPERIMENTAL_SAFE",
+   "source": "roster distribution most common (36/149 players); 6 common values + long tail = dribble move candidate; value is a real in-game animation ID used by 36 roster players",
+   "note": "semantic slot unknown (one of the dribble move fields); MC original value was 129 (Big Man); bounded single-byte write, readback verified"
+  },
+  "field_0x31A": {
+   "offset": "0x31A",
+   "width": 1,
+   "value": 33,
+   "confidence": "EXPERIMENTAL_SAFE",
+   "source": "roster distribution most common (30/149 players); 32/33/34 consecutive cluster = action ID space candidate; Curry=32, KD=33, LeBron=35",
+   "note": "semantic slot unknown; MC original value was 0; bounded single-byte write"
+  },
+  "field_0x290": {
+   "offset": "0x290",
+   "width": 1,
+   "value": 48,
+   "confidence": "EXPERIMENTAL_SAFE",
+   "source": "roster distribution most common (10/149 players); 48/43/46/37/41 cluster = mid-value action ID candidate",
+   "note": "semantic slot unknown; MC original value was 0; bounded single-byte write"
+  }
+ },
+ "not_included": {
+  "dribble_style_quick": "name-to-ID mapping unresolved; no per-record ID table located",
+  "signature_sizeup_pro2": "same",
+  "sizeup_escape_pro2": "same",
+  "moving_crossover_pro2": "candidate field 0x304 may be this slot but semantic unverified",
+  "moving_behind_back_pro6": "same",
+  "moving_spin_basic1": "same",
+  "moving_hesitation_pro4": "same",
+  "triple_threat_normal4": "same",
+  "layup_long_athlete": "same",
+  "dunks": "dunk slots not safely located"
+ }
+}
