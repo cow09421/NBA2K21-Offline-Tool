@@ -1,6 +1,6 @@
 ﻿param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet('apply','restore','backup','status')]
+    [ValidateSet('apply','restore','backup','status','migrate-name')]
     [string]$Action,
     [ValidateSet('park_meta','curry','lebron','kd','original')]
     [string]$JumpShot = 'park_meta'

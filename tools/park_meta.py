@@ -1,5 +1,7 @@
 """Bounded runtime animation transactions. Unknown animation semantics stay experimental.
-No save decoding; MC target is configured q q / Lakers, never inferred from UI labels.
+No save decoding; MC target is the configured Roxy Migurdia / Lakers identity (first name
+"Roxy", last name "Migurdia"); the legacy q q player is accepted ONLY as a one-time
+migration source. Identity is never inferred from UI labels.
 """
 import sys, json, hashlib, datetime, uuid, ctypes as C, msvcrt
 from pathlib import Path
@@ -15,6 +17,14 @@ ANIM_FIELDS = [(0x18D,3),(0x304,1),(0x31A,1),(0x290,1),(0x226,1),(0x348,1),(0x35
 DONORS = {'curry':('Warriors','Curry Stephen'),'lebron':('Lakers','James LeBron'),'kd':('Nets','Durant Kevin')}
 SIZE = 0x4E8
 ORIGINAL = SESSIONS/'original.json'
+# Fixed MC identity (name is part of the identity guard, alongside team/slot/Face ID/
+# membership/name_bytes/unique_id_bytes/game_sha256). Legacy q q is migration-source only.
+MC_TEAM = 'Lakers'
+MC_FIRST = 'Roxy'
+MC_LAST = 'Migurdia'
+MC_FULL = MC_FIRST + ' ' + MC_LAST
+LEGACY_FULL = 'q q'
+NAME_SPANS = [(0x00, 40), (0x28, 40)]  # surname / given name: fixed 40-byte UTF-16 char buffers
 def utc(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def save(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -39,13 +49,72 @@ def find_player(r,info,team,name):
     for t in roster_browser.ListRosterTeams(r,info)['teams']:
         if t.get('team_name')!=team: continue
         for p in roster_browser.ListRosterPlayers(r,info,t['team_index'])['players']:
-            if p['valid'] and (p['surname']+' '+p['given_name']).strip()==name:
+            # given-first matches ReadRosterPlayer.report['name'] (First + Last); accept both orders for symmetry-safety
+            if p['valid'] and name in ((p['given_name']+' '+p['surname']).strip(),(p['surname']+' '+p['given_name']).strip()):
                 matches.append(roster_browser.ReadRosterPlayer(r,info,t['team_index'],p['slot']))
     if len(matches)!=1: raise RuntimeError(f'Ambiguous/missing target {team}/{name}: {len(matches)}')
     return matches[0]
+def find_mc(r, info):
+    """Resolve the MC target with identity guard: Roxy Migurdia first; the legacy q q
+    player is accepted only as a one-time migration source (no Roxy found + legacy found).
+    find_player returns (report, data); returns (report, data, is_legacy)."""
+    try:
+        report, raw = find_player(r, info, MC_TEAM, MC_FULL)
+        return report, raw, False
+    except Exception:
+        report, raw = find_player(r, info, MC_TEAM, LEGACY_FULL)  # missing/ambiguous legacy also fails closed
+        return report, raw, True
+
 def identity(report, raw):
     return dict(name=report['name'],face_id=report['face_id'],membership=report['membership'],
                 name_bytes=raw[:80].hex(),unique_id_bytes=raw[0x324:0x328].hex(),game_sha256=report['game_sha256'])
+def utf16_name(s):
+    """Encode a name into the fixed 40-byte UTF-16 char buffer (null-padded, truncated at 19 chars)."""
+    b = s.encode('utf-16-le')[:38]
+    return b + bytes(40 - len(b))
+
+def migrate_name(r, info):
+    """One-time identity migration: legacy q q -> Roxy Migurdia.
+    Writes ONLY the two 40-byte name buffers, readback-verifies, then rebinds the
+    ORIGINAL baseline identity key (fields/checksum untouched). Fails closed when
+    Roxy already exists or no unambiguous legacy target."""
+    report, raw, _ = find_mc(r, info)  # returns legacy (Roxy path raises via migration refusal below)
+    va = int(report['player_address'],16)
+    # refuse if already migrated
+    surname = roster_browser.u16string(raw[:40]); given = roster_browser.u16string(raw[40:80])
+    if surname == MC_FIRST and given == MC_LAST:
+        return dict(status='ALREADY', name=MC_FULL)
+    if surname != 'q' or given != 'q':
+        raise RuntimeError(f'Refusing migration: unexpected current name {surname}/{given}')
+    new_bytes = utf16_name(MC_LAST) + utf16_name(MC_FIRST)  # +0x00 surname, +0x28 given
+    # open write handle (same access pattern as Context.write)
+    h = K.OpenProcess(0x438, False, r.pid)
+    if not h: raise RuntimeError('Write handle open failed')
+    try:
+        fn = K.WriteProcessMemory
+        fn.argtypes = [W.HANDLE, C.c_void_p, C.c_void_p, C.c_size_t, C.POINTER(C.c_size_t)]; fn.restype = W.BOOL
+        b = C.create_string_buffer(new_bytes, len(new_bytes)); n = C.c_size_t()
+        if not fn(h, C.c_void_p(va), b, len(new_bytes), C.byref(n)) or n.value != len(new_bytes):
+            raise RuntimeError('Partial/failed name write')
+    finally:
+        K.CloseHandle(h)
+    # readback via fresh full read
+    after = r.read(va, SIZE)
+    if after[:80] != new_bytes: raise RuntimeError('Name readback mismatch')
+    if after[80:] != raw[80:]: raise RuntimeError('Non-name bytes changed during migration')
+    # rebind ORIGINAL baseline identity key (explicit one-time migration; fields untouched)
+    if ORIGINAL.exists():
+        base = json.loads(ORIGINAL.read_text(encoding='utf8'))
+        new_key = identity(report, after)
+        new_key['name'] = MC_FULL
+        base['identity'] = new_key
+        tmp = ORIGINAL.with_suffix('.json.migrating')
+        with tmp.open('w', encoding='utf8') as f:
+            json.dump(base, f, ensure_ascii=False, indent=2); f.flush()
+            import os; os.fsync(f.fileno())
+        tmp.replace(ORIGINAL)
+    return dict(status='MIGRATED', name=MC_FULL, readback='PASS', non_name_bytes_unchanged=True)
+
 class Context:
     def __init__(self):
         self.r=None;self.h=None
@@ -56,7 +125,7 @@ class Context:
             if Path(self.r.path).resolve()!=pr.GAME_EXE or self.r.size!=self.info['image_size']: raise RuntimeError('Image mismatch')
             self.created=process_created(self.r.handle)
             if pr._creation_time(self.r.pid)!=self.ident['creation']: raise RuntimeError('Process changed')
-            self.report,self.raw=find_player(self.r,self.info,'Lakers','q q')
+            self.report,self.raw,self.legacy=find_mc(self.r,self.info)
             self.va=int(self.report['player_address'],16);self.key=identity(self.report,self.raw)
         except BaseException:
             self.close();raise
@@ -174,7 +243,15 @@ def run(action,name=None):
 if __name__=='__main__':
     import argparse
     p=argparse.ArgumentParser();g=p.add_mutually_exclusive_group(required=True)
-    g.add_argument('--apply',choices=['park_meta',*DONORS]);g.add_argument('--restore',action='store_true');g.add_argument('--status',action='store_true');g.add_argument('--backup',action='store_true')
+    g.add_argument('--apply',choices=['park_meta',*DONORS]);g.add_argument('--restore',action='store_true');g.add_argument('--status',action='store_true');g.add_argument('--backup',action='store_true');g.add_argument('--migrate-name',action='store_true')
     args=p.parse_args()
-    try:run('apply' if args.apply else 'restore' if args.restore else 'backup' if args.backup else 'status',args.apply)
+    try:
+        if args.migrate_name:
+            ident=pr.resolve();info=player_tool.discover()
+            r=Reader(ident['pid'])
+            try:
+                res=migrate_name(r,info)
+            finally:r.close()
+            print(json.dumps(res,ensure_ascii=False));sys.exit(0)
+        run('apply' if args.apply else 'restore' if args.restore else 'backup' if args.backup else 'status',args.apply)
     except Exception as e:print(json.dumps(dict(status='REFUSED_OR_FAILED',error=str(e)),ensure_ascii=False),file=sys.stderr);sys.exit(1)

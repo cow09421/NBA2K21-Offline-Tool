@@ -311,8 +311,8 @@ namespace V2FLSEngine.Gui
                 AutoSize = true,
             };
 
-            string[] labels = { "讀取目前球員", "保存快照 (Dump)", "全能力 99", "全能力 110", "恢復原能力", "全徽章", "恢復原徽章", "套用 2K21 PARK META", "Curry 動作包", "LeBron 動作包", "KD 動作包", "恢復原動作" };
-            string[] actions = { "read", "dump", "attributes99", "attributes110", "restore-abilities", "max-badges", "restore-badges", "park-meta-apply", "park-meta-curry", "park-meta-lebron", "park-meta-kd", "park-meta-restore" };
+            string[] labels = { "讀取目前球員", "保存快照 (Dump)", "全能力 99", "全能力 110", "恢復原能力", "全徽章", "恢復原徽章", "套用 2K21 PARK META", "Curry 動作包", "LeBron 動作包", "KD 動作包", "恢復原動作", "設定 MC 姓名：Roxy Migurdia" };
+            string[] actions = { "read", "dump", "attributes99", "attributes110", "restore-abilities", "max-badges", "restore-badges", "park-meta-apply", "park-meta-curry", "park-meta-lebron", "park-meta-kd", "park-meta-restore", "park-meta-migrate-name" };
 
             var buttons = new List<Button>();
             for (int i = 0; i < actions.Length; i++)
@@ -1392,6 +1392,7 @@ namespace V2FLSEngine.Gui
                 case "park-meta-lebron": return "LeBron 動作包";
                 case "park-meta-kd": return "KD 動作包";
                 case "park-meta-restore": return "恢復原動作";
+                case "park-meta-migrate-name": return "設定 MC 姓名：Roxy Migurdia";
                 default: return action;
             }
         }

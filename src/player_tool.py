@@ -8,6 +8,8 @@ resolution point only. Baseline/validation/writer/verify are shared.
 """
 import sys, json, os, ctypes as C, datetime, argparse
 sys.dont_write_bytecode=True
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from locator import ROOT, discover, read_selected
 from memory_read import Reader, K, W
 from clean_baseline import assert_same_identity, process_created, persist_new, digest, utc
