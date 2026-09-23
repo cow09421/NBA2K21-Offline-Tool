@@ -50,7 +50,8 @@ GUI 流程：先「讀取目前球員」建立 baseline → 再按任一動作�
 GUI「遊戲時間控制」視窗提供 0.10x／0.25x／0.50x／0.75x／1.00x，
 與 NBA2K21 原生「比賽速度」設定分開。
 自製 x64 Speed Engine（IAT hook QPC／GTC64／GTC／timeGetTime）已在受控 TestTarget 全數通過；
-**NBA2K21 慢速 gameplay 尚未驗收（0.75x 亦同）**。
+**0.75x 已通過 NBA2K21 gameplay 人工驗收（明顯慢於 1.00x、快於 0.50x，
+切回 1.00x 正常，操作／音訊無異常；其餘倍率的 gameplay 未逐一驗收）**。
 Telemetry 只顯示各 clock ACTIVE／NOT USED，不顯示累積呼叫次數；
 正式 release 預設關閉 per-call counter（另建 debug DLL 供診斷）。
 依賴 `runtime\python`、`speed_engine\controller.py`、`release\speed_engine\SpeedEngine64.dll`；

@@ -11,7 +11,9 @@
 - Native NBA2K21 Game Speed runtime research was closed after repeated differential scans produced no reliable authoritative value.
 - Process Time Multiplier is a separate implemented feature.
 - 研究廢料（memory scans、candidate JSON、screenshots、GearNT zip、舊 logs/dumps）已 MOVE 到本地屎山，未進 repo。
-- 0.75x 的 NBA2K21 gameplay 尚未人工驗收；正式 release DLL 的 counter-OFF swap 待遊戲工作階段結束後執行。
+- 0.75x 已通過 NBA2K21 gameplay 人工驗收（慢於 1.00x、快於 0.50x，操作／音訊正常）；
+  正式 release DLL（counter-OFF，SHA256 dc79f4eff2f8d7700a274b2659abe6bef7c1544947d94388095e1f51b8ad3d6c）
+  已重建，TestTarget 全套 regression PASS。
 
 ## 2026-09-23 — Fix missing memory_read runtime dependency after project slimming
 
