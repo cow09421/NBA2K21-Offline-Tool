@@ -15,6 +15,7 @@ $src = @(
     (Join-Path $gui 'Program.cs'),
     (Join-Path $gui 'MainForm.cs'),
     (Join-Path $gui 'SimpleJson.cs')
+    (Join-Path $gui 'SpeedForm.cs')
 )
 $out = Join-Path $gui $OutName
 $releaseOut = Join-Path $projectRoot $ReleaseName

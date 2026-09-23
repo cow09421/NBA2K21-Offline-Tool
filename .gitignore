@@ -34,3 +34,13 @@ obj/
 bin/
 Thumbs.db
 Desktop.ini
+
+# Speed Engine dev toolchain (build-only, never commit)
+tools/toolchains/
+
+# research artifacts (native Game Speed line closed; scans live outside repo)
+analysis/
+*.json.gz
+
+# GearNT binaries/samples (never a product dependency)
+GearNT*.zip

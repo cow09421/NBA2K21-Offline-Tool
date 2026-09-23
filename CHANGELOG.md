@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-24 — 0.75x preset, telemetry streamline, research cleanup
+
+- GUI 倍率新增 0.75x（共 0.10x／0.25x／0.50x／0.75x／1.00x）；engine 本就接受任意 0.05–2.0 倍率，未改核心。
+- Telemetry 視窗改顯示 QPC／GTC64／GTC／timeGetTime ACTIVE／NOT USED，不再顯示累積呼叫次數；
+  正式 release 預設關閉 per-call counter（compile-time `SPEED_TELEMETRY_COUNTERS`，另建 debug DLL 供診斷，
+  以 `last_virtual_qpc` 變化驗證 hook 命中）。
+- TestTarget 驗證 1.00→0.75→0.50→0.75→1.00 比率正確、monotonic、switch continuity、IPC seq==ack、
+  restore 1.00x、disconnect restore、reconnect 後 0.75x；55 regression＋GUI presets=5 gating PASS。
+- Native NBA2K21 Game Speed runtime research was closed after repeated differential scans produced no reliable authoritative value.
+- Process Time Multiplier is a separate implemented feature.
+- 研究廢料（memory scans、candidate JSON、screenshots、GearNT zip、舊 logs/dumps）已 MOVE 到本地屎山，未進 repo。
+- 0.75x 的 NBA2K21 gameplay 尚未人工驗收；正式 release DLL 的 counter-OFF swap 待遊戲工作階段結束後執行。
+
 ## 2026-09-23 — Fix missing memory_read runtime dependency after project slimming
 
 **ROOT CAUSE**：專案精簡後，`src\mycareer_unlock.py` 與 `src\hidden_options.py` 由「從 src/ 目錄執行」
@@ -61,3 +74,11 @@ locator 演算法未修改。
   status ORIGINAL）：PASS
 - 55 tests：PASS（0.117s，無退化）
 - GUI build + smoke（6 個 park-meta 按鈕）：PASS
+
+## 2026-09-23 — Speed Engine 實驗版（未完成遊戲驗收）
+
+- 新增自製 x64 IAT 時鐘攔截 POC、連續虛擬 clock、倍率與失聯恢復控制、只允許指定遊戲/測試程序的 controller。
+- 新增 1.00x／0.50x／0.25x／0.10x GUI 預設與 telemetry 狀態視窗；未 READY 前按鈕停用。
+- TestTarget 的四種 clock 倍率、還原、IPC、thread access、失聯恢復、重新連線與錯誤目標拒絕通過。
+- NBA2K21 只完成主選單舊版1.00x QPC telemetry。其 QUIT ack 未確認；新版尚未在全新遊戲工作階段驗證，MyCAREER gameplay 效果未驗證。
+- 既有 63 項 Python 測試與 GUI 啟動檢查通過。GearNT 僅作靜態研究，沒有加入產品。

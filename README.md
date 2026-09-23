@@ -45,6 +45,20 @@ release\NBA2K21 Offline Tool.exe
 GUI 流程：先「讀取目前球員」建立 baseline → 再按任一動作按鈕。
 第一次套用動作包時會自動建立 ORIGINAL baseline。
 
+## Speed Engine（實驗性 process time multiplier）
+
+GUI「遊戲時間控制」視窗提供 0.10x／0.25x／0.50x／0.75x／1.00x，
+與 NBA2K21 原生「比賽速度」設定分開。
+自製 x64 Speed Engine（IAT hook QPC／GTC64／GTC／timeGetTime）已在受控 TestTarget 全數通過；
+**NBA2K21 慢速 gameplay 尚未驗收（0.75x 亦同）**。
+Telemetry 只顯示各 clock ACTIVE／NOT USED，不顯示累積呼叫次數；
+正式 release 預設關閉 per-call counter（另建 debug DLL 供診斷）。
+依賴 `runtime\python`、`speed_engine\controller.py`、`release\speed_engine\SpeedEngine64.dll`；
+重建見 `speed_engine\Build-SpeedEngine.ps1`。
+
+Native NBA2K21 Game Speed runtime research was closed after repeated differential scans produced no reliable authoritative value.
+Process Time Multiplier is a separate implemented feature.
+
 ## Build
 
 ```

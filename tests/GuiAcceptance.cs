@@ -18,6 +18,16 @@ class GuiAcceptance {
     if(label!=b.Text || !b.Enabled)throw new Exception("Button label/gating mismatch "+b.Tag);
     Console.WriteLine("BUTTON "+b.Tag+" "+b.Text);
    }
+   var speedType=asm.GetType("V2FLSEngine.Gui.SpeedForm");
+   if(speedType==null)throw new Exception("Speed UI missing");
+   using(var speed=(Form)Activator.CreateInstance(speedType,BindingFlags.NonPublic|BindingFlags.Instance,null,new object[]{t.GetField("_root",flags).GetValue(form)},null)) {
+    speed.ShowInTaskbar=false;speed.Opacity=0;speed.Show();Application.DoEvents();speed.Hide();
+    var presetField=speedType.GetField("presets",flags);
+    var presets=(Button[])presetField.GetValue(speed);
+     if(presets.Length!=5)throw new Exception("Speed presets missing");
+    foreach(var button in presets)if(button.Enabled)throw new Exception("Preset enabled before engine READY");
+    Console.WriteLine("SPEED_UI_STARTED presets="+presets.Length+" gated=true");
+   }
    if(args.Length==0)return 0;
    object res=t.GetMethod("RunProcess",flags).Invoke(form,new object[]{args[0],false});
    var rt=res.GetType();Console.WriteLine(rt.GetField("Stdout").GetValue(res));Console.Error.WriteLine(rt.GetField("Stderr").GetValue(res));

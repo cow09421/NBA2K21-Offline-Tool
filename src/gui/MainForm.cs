@@ -378,13 +378,14 @@ namespace V2FLSEngine.Gui
         private Control BuildOfflineBox()
         {
             var box = MakeGroupBox("D. 離線功能");
-            box.Height = 104;
-            box.MinimumSize = new Size(0, 104);
-            var t = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = C_PANEL, ColumnCount = 2, RowCount = 2, Margin = new Padding(10) };
+            box.Height = 145;
+            box.MinimumSize = new Size(0, 145);
+            var t = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = C_PANEL, ColumnCount = 2, RowCount = 3, Margin = new Padding(10) };
             t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             t.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 340));
-            t.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            t.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            t.RowStyles.Add(new RowStyle(SizeType.Percent, 33F));
+            t.RowStyles.Add(new RowStyle(SizeType.Percent, 33F));
+            t.RowStyles.Add(new RowStyle(SizeType.Percent, 34F));
 
             // Row 0: Offline MyCAREER
             var mc = new TableLayoutPanel { Dock = DockStyle.Fill, BackColor = C_PANEL, ColumnCount = 2, RowCount = 1 };
@@ -425,6 +426,13 @@ namespace V2FLSEngine.Gui
             hoFlow.Controls.Add(_btnHoEnable);
             hoFlow.Controls.Add(_btnHoDisable);
             t.Controls.Add(hoFlow, 1, 1);
+
+            var speedLabel = new Label { Text = "遊戲時間控制：", Dock = DockStyle.Fill, BackColor = C_PANEL, ForeColor = C_TEXT, TextAlign = ContentAlignment.MiddleLeft };
+            var speedButton = MakeButton("開啟時間控制（實驗性）", "speed-open", false);
+            speedButton.Click -= ActionButton_Click;
+            speedButton.Click += (sender, args) => { using (var form = new SpeedForm(_root)) form.ShowDialog(this); };
+            t.Controls.Add(speedLabel, 0, 2);
+            t.Controls.Add(speedButton, 1, 2);
 
             box.Controls.Add(t);
             return box;
